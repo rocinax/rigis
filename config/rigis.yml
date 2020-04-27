@@ -1,0 +1,74 @@
+---
+
+# **************** * *************** * *************** * ***************
+#                           Config Section
+# **************** * *************** * *************** * ***************
+
+# **************** Server Setting ***************
+
+# parameter   : ServerPort
+# description : rocinax rigis accept server port
+# default     : 6443
+ServerPort: 6443
+
+# parameter   : ServerName
+# description : rocinax rigis http header server name
+# default     : Rocinax Rigis Server
+ServerName: "Rocinax Rigis Server"
+
+
+# **************** TLS Setting ***************
+
+# parameter   : TLSEnable
+# description : if tls enable then true
+# default     : false
+TLSEnable: false
+
+# parameter   : TLSCertFiles
+# description : tls cert files path
+# default     : none
+TLSCertFiles: 
+
+# parameter   : TLSPrivateKeyFiles
+# description : tls private key files path
+# default     : none
+TLSPrivateKeyFiles:
+
+# **************** Directory Setting ***************
+
+# parameter   : TemplateDir
+# description : template file direcotry path
+# default     : /opt/rocinax/rigis/template/
+TemplateDir: "/opt/rocinax/rigis/template/"
+
+# parameter   : LogDir
+# description : log directory path
+# default     : /opt/rocinax/rigis/logs/
+LogDir: /opt/rocinax/rigis/logs/
+
+
+# **************** Template Setting ***************
+
+# parameter   : ErrorTemplate
+# description : errpr template file
+# default     : error.html
+ErrorTemplate: error.html
+
+
+# **************** Logger Setting ***************
+
+# parameter   : LogType
+# description : logger log type
+# default     : Stdout
+LogType: Stdout
+
+# parameter   : LogLevel
+# description : logger log level
+# default     : Info
+LogLevel: Info
+
+# **************** * *************** * *************** * ***************
+#                           Rigis Section
+# **************** * *************** * *************** * ***************
+
+Rigis:
