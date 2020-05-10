@@ -14,7 +14,7 @@ ServerPort: 6443
 # parameter   : ServerName
 # description : rocinax rigis http header server name
 # default     : Rocinax Rigis Server
-ServerName: "Rocinax Rigis Server"
+ServerName: Rocinax Rigis Server
 
 
 # **************** TLS Setting ***************
@@ -39,7 +39,7 @@ TLSPrivateKeyFiles:
 # parameter   : TemplateDir
 # description : template file direcotry path
 # default     : /opt/rocinax/rigis/template/
-TemplateDir: "/opt/rocinax/rigis/template/"
+TemplateDir: /opt/rocinax/rigis/template/
 
 # parameter   : LogDir
 # description : log directory path
