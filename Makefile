@@ -1,6 +1,6 @@
 ROOTDIR=/opt/rocinax
 APPNAME=rigis
-APPVERSION=0.0.4-alpha
+APPVERSION=0.0.5-alpha
 APPFULLNAME=$(APPNAME)-$(APPVERSION)
 
 # Go build commands

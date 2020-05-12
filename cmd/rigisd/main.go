@@ -54,7 +54,7 @@ func init() {
 
 		fileName := path.Join(
 			viper.GetString("LogDir"),
-			"rhole.log",
+			"rigis.log",
 		)
 
 		// file check
