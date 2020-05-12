@@ -171,11 +171,26 @@ func ResponseError(rw http.ResponseWriter, req *http.Request, data map[string]in
 
 // FormatAccessLog :
 func FormatAccessLog(res *http.Response) map[string]interface{} {
+
+	var remoteAddr string
+	var remotePort string
+
+	if res.Request.Header.Get("X-Read-IP") != "" {
+		remoteAddr = res.Request.Header.Get("X-Read-IP")
+		remotePort = ""
+	} else if res.Request.Header.Get("X-Forwarded-For") != "" {
+		remoteAddr = strings.Split(res.Request.Header.Get("X-Forwarded-For"), ",")[0]
+		remotePort = ""
+	} else {
+		remoteAddr = strings.Split(res.Request.RemoteAddr, ":")[0]
+		remotePort = strings.Split(res.Request.RemoteAddr, ":")[1]
+	}
+
 	return logrus.Fields{
 		"type":            "access",
 		"app":             "rigis",
-		"remote_address":  strings.Split(res.Request.RemoteAddr, ":")[0],
-		"remote_port":     strings.Split(res.Request.RemoteAddr, ":")[1],
+		"remote_address":  remoteAddr,
+		"remote_port":     remotePort,
 		"host":            res.Request.Host,
 		"method":          res.Request.Method,
 		"request_uri":     res.Request.RequestURI,
@@ -190,11 +205,26 @@ func FormatAccessLog(res *http.Response) map[string]interface{} {
 
 // FormatErrorLog :
 func FormatErrorLog(req *http.Request) map[string]interface{} {
+
+	var remoteAddr string
+	var remotePort string
+
+	if req.Header.Get("X-Read-IP") != "" {
+		remoteAddr = req.Header.Get("X-Read-IP")
+		remotePort = ""
+	} else if req.Header.Get("X-Forwarded-For") != "" {
+		remoteAddr = strings.Split(req.Header.Get("X-Forwarded-For"), ",")[0]
+		remotePort = ""
+	} else {
+		remoteAddr = strings.Split(req.RemoteAddr, ":")[0]
+		remotePort = strings.Split(req.RemoteAddr, ":")[1]
+	}
+
 	return logrus.Fields{
 		"type":            "access",
 		"app":             "rigis",
-		"remote_address":  strings.Split(req.RemoteAddr, ":")[0],
-		"remote_port":     strings.Split(req.RemoteAddr, ":")[1],
+		"remote_address":  remoteAddr,
+		"remote_port":     remotePort,
 		"host":            req.Host,
 		"method":          req.Method,
 		"request_uri":     req.RequestURI,
