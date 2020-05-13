@@ -175,15 +175,15 @@ func FormatAccessLog(res *http.Response) map[string]interface{} {
 	var remoteAddr string
 	var remotePort string
 
-	if res.Request.Header.Get("X-Read-IP") != "" {
-		remoteAddr = res.Request.Header.Get("X-Read-IP")
+	if res.Request.Header.Get("X-Real-IP") != "" {
+		remoteAddr = res.Request.Header.Get("X-Real-IP")
 		remotePort = ""
 	} else if res.Request.Header.Get("X-Forwarded-For") != "" {
 		remoteAddr = strings.Split(res.Request.Header.Get("X-Forwarded-For"), ",")[0]
 		remotePort = ""
 	} else {
-		remoteAddr = strings.Split(res.Request.RemoteAddr, ":")[0]
-		remotePort = strings.Split(res.Request.RemoteAddr, ":")[1]
+		remoteAddr = res.Request.URL.Hostname()
+		remotePort = res.Request.URL.Port()
 	}
 
 	return logrus.Fields{

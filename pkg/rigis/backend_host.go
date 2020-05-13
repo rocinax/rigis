@@ -19,7 +19,7 @@ type backendHost struct {
 func newBackendHost(weight int, beURL *url.URL) backendHost {
 
 	rp := newSingleHostReverseProxy(beURL)
-	rp.ModifyResponse = outputAccessLog
+	rp.ModifyResponse = modifyResponse
 	rp.ErrorHandler = errorHandler
 
 	return backendHost{
@@ -61,7 +61,6 @@ func newSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 			req.URL.RawQuery = targetQuery + "&" + req.URL.RawQuery
 		}
 		if _, ok := req.Header["User-Agent"]; !ok {
-			// explicitly disable User-Agent so it's not set to default value
 			req.Header.Set("User-Agent", "")
 		}
 	}
@@ -80,7 +79,8 @@ func singleJoiningSlash(a, b string) string {
 	return a + b
 }
 
-func outputAccessLog(res *http.Response) error {
+func modifyResponse(res *http.Response) error {
+	res.Header.Set("Server", viper.GetString("ServerName"))
 	logrus.WithFields(FormatAccessLog(res)).Info("write access log at information level")
 	return nil
 }
