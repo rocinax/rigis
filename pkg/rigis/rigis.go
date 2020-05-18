@@ -112,6 +112,7 @@ func (r rigis) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 		}
 
 		r.nodes[i].serveHTTP(rw, req)
+		return
 	}
 
 	// not match all rule
