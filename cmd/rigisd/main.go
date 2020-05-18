@@ -13,6 +13,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"golang.org/x/net/netutil"
 )
 
 func init() {
@@ -20,9 +21,7 @@ func init() {
 	// *************** Server Default Setting ***************
 	viper.SetDefault("ServerPort", 6443)
 	viper.SetDefault("ServerName", "Rocinax Rigis Server")
-
-	viper.SetDefault("Rigis.Filter.Rule.Type", "TrueRule")
-	viper.SetDefault("Rigis.Filter.Accept", true)
+	viper.SetDefault("ServerMaxConnections", 256)
 
 	// pflag config
 	pflag.String("config", "/opt/rocinax/rigis/config", "config: rocinax rigis config directory.")
@@ -163,7 +162,10 @@ func main() {
 			}).Fatal(err)
 		}
 
-		err = ServerSSL.Serve(listener)
+		// Set ServerMaxConnections
+		limitListener := netutil.LimitListener(listener, viper.GetInt("ServerMaxConnections"))
+
+		err = ServerSSL.Serve(limitListener)
 		if err != nil {
 			logrus.WithFields(logrus.Fields{
 				"type": "server",

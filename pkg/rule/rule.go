@@ -2,6 +2,7 @@ package rule
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 )
 
@@ -37,8 +38,10 @@ func NewRule(ruleType string, setting map[string]interface{}) Rule {
 		return NewTrueRule()
 	case "FalseRule":
 		return NewFalseRule()
-	default:
+	case "":
 		return NewFalseRule()
+	default:
+		panic(errors.New("UndefinedRuleException"))
 	}
 }
 

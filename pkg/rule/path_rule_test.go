@@ -3,8 +3,6 @@ package rule
 import (
 	"net/http"
 	"testing"
-
-	"github.com/rocinax/rigis/pkg/rule"
 )
 
 type pathRuleTestConfig struct {
@@ -55,8 +53,8 @@ func TestPathRule(t *testing.T) {
 	})
 
 	for i := 0; i < len(pathRuleTestConfigs); i++ {
-		pathRule := rule.NewPathRule(
-			rule.PathSetting{
+		pathRule := NewPathRule(
+			PathSetting{
 				Path:   pathRuleTestConfigs[i].path,
 				Exlude: pathRuleTestConfigs[i].exlude,
 			},

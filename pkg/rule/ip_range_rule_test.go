@@ -3,8 +3,6 @@ package rule
 import (
 	"net/http"
 	"testing"
-
-	"github.com/rocinax/rigis/pkg/rule"
 )
 
 type ipRangeRuleTestConfig struct {
@@ -43,8 +41,8 @@ func TestIPRangeRule(t *testing.T) {
 	})
 
 	for i := 0; i < len(ipRangeRuleTestConfigs); i++ {
-		ipRangeRule := rule.NewIPRangeRule(
-			rule.IPRangeSetting{
+		ipRangeRule := NewIPRangeRule(
+			IPRangeSetting{
 				CIDR:    ipRangeRuleTestConfigs[i].cidr,
 				Exclude: ipRangeRuleTestConfigs[i].exclude,
 			},

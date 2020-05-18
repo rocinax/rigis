@@ -3,8 +3,6 @@ package rule
 import (
 	"net/http"
 	"testing"
-
-	"github.com/rocinax/rigis/pkg/rule"
 )
 
 type httpMethodRuleTestConfig struct {
@@ -43,8 +41,8 @@ func TestHTTPpMethodRule(t *testing.T) {
 	})
 
 	for i := 0; i < len(httpMethodRuleTestConfigs); i++ {
-		httpMethodRule := rule.NewHTTPMethodRule(
-			rule.HTTPMethodSetting{
+		httpMethodRule := NewHTTPMethodRule(
+			HTTPMethodSetting{
 				Method:  httpMethodRuleTestConfigs[i].method,
 				Exclude: httpMethodRuleTestConfigs[i].exclude,
 			},

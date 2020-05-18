@@ -19,5 +19,5 @@ func newFilter(fRule rule.Rule, accept bool) filter {
 }
 
 func (f filter) Execute(req *http.Request) bool {
-	return f.rule.Execute(req) && f.accept
+	return f.rule.Execute(req) == f.accept
 }

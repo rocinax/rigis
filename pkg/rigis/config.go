@@ -32,3 +32,9 @@ type ConfigBackendHost struct {
 	Weight int
 	URL    string
 }
+
+// Check Config Format Check
+func (config Config) Check() bool {
+
+	return true
+}

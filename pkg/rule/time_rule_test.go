@@ -3,14 +3,12 @@ package rule
 import (
 	"net/http"
 	"testing"
-
-	"github.com/rocinax/rigis/pkg/rule"
 )
 
 func TestTimeRule(t *testing.T) {
 
-	includeTimeRule := rule.NewTimeRule(
-		rule.TimeSetting{
+	includeTimeRule := NewTimeRule(
+		TimeSetting{
 			StartHour:    0,
 			StartMinutes: 0,
 			EndHour:      23,
@@ -19,8 +17,8 @@ func TestTimeRule(t *testing.T) {
 		},
 	)
 
-	excludeTimeRule := rule.NewTimeRule(
-		rule.TimeSetting{
+	excludeTimeRule := NewTimeRule(
+		TimeSetting{
 			StartHour:    0,
 			StartMinutes: 0,
 			EndHour:      23,

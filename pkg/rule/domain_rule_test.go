@@ -3,8 +3,6 @@ package rule
 import (
 	"net/http"
 	"testing"
-
-	"github.com/rocinax/rigis/pkg/rule"
 )
 
 type domainRuleTestConfig struct {
@@ -67,8 +65,8 @@ func TestDomainRule(t *testing.T) {
 	})
 
 	for i := 0; i < len(domainRuleTestConfigs); i++ {
-		domainRule := rule.NewDomainRule(
-			rule.DomainSetting{
+		domainRule := NewDomainRule(
+			DomainSetting{
 				Domain:           domainRuleTestConfigs[i].domain,
 				IncludeSubDomain: domainRuleTestConfigs[i].includeSubDomain,
 			},

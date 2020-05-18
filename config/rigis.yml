@@ -16,6 +16,15 @@ ServerPort: 6443
 # default     : Rocinax Rigis Server
 ServerName: Rocinax Rigis Server
 
+# parameter   : ProxyUserAgent
+# description : rocinax rigis http header user agent
+# default     : Rocinax Rigis User Agent
+ProxyUserAgent: Rocinax Rigis User Agent
+
+# parameter   : ServerMaxConnections
+# description : rocinax rigis http server max-connections
+# default     : 1024
+ServerMaxConnections: 1024
 
 # **************** TLS Setting ***************
 
